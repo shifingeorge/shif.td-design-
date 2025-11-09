@@ -233,7 +233,7 @@ function App() {
            </div>
 
            {/* footer brand sits flush to footer bottom */}
-           <div className="mt-6 text-[8rem] md:text-[12rem] sm:text-[6rem] leading-none">
+           <div className="hidden sm:block mt-6 text-[8rem] md:text-[12rem] sm:text-[6rem] leading-none">
              <h2 className="font-bold bricolage">
                shiftd.design
              </h2>
