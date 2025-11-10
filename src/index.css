@@ -5,6 +5,60 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Page background and subtle film grain overlay */
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background-color: #ae3321;
+  /* keep text rendering crisp on the colored background */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* global film-grain overlay — subtle, non-blocking */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5; /* reduced so footer can layer a stronger grain */
+  mix-blend-mode: overlay;
+  opacity: 0.06;
+  background-image:
+    radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 3px 3px, 6px 6px;
+}
+
+/* footer-specific grain overlay (a little stronger) */
+.footer-bg {
+  position: relative;
+  overflow: visible;
+}
+
+/* footer overlay sits above global grain but below footer content */
+.footer-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  mix-blend-mode: multiply;
+  opacity: 0.10; /* slightly stronger than global grain */
+  background-image:
+    radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 3px 3px, 6px 6px;
+}
+
+/* ensure footer content renders above the overlay */
+.footer-bg > * {
+  position: relative;
+  z-index: 20;
+}
+
 /* Use this class on elements that should use Bricolage Grotesque */
 .bricolage {
   font-family: 'Bricolage Grotesque', ui-sans-serif, system-ui, -apple-system,
@@ -19,6 +73,11 @@
   font-family: 'Nunito Sans', ui-sans-serif, system-ui, -apple-system, "Segoe UI",
     Roboto, "Helvetica Neue", Arial;
   font-weight: 600;
+}
+
+/* cream text used across navbar, hero and project content */
+.text-cream {
+  color: #fff6e2;
 }
 
 .rotating-text span {
