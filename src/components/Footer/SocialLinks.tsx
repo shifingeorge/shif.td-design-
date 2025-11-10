@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaMedium, FaWhatsapp, FaFigma } from 'react-icons/fa';
 import { SiGmail } from 'react-icons/si';
 import { socials } from '../../data/socials';
