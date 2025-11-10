@@ -52,9 +52,9 @@ export default function Hero() {
 // timing helpers (keep in sync with TypingAnimation char delay = 0.03s)
   const baseDelay = 3.4;
   const charDelay = 0.03;
-  const preText = 'full-time problem\u00A0';
+  const preText = 'full-time problem';
   const lastWord = 'untangler';
-  const lastStart = baseDelay + preText.length * charDelay;
+  const lastStart = baseDelay + (preText.length+1) * charDelay;
   const underlineDelay = lastStart + lastWord.length * charDelay + 0.1;
 
   return (
@@ -74,28 +74,32 @@ export default function Hero() {
 
             <TypingAnimation text="part designer, part vibe coder," startDelay={2.6} className="nunito" />
 
-            <div className="inline-flex items-baseline nunito">
-              <TypingAnimation text={preText} startDelay={baseDelay} className="nunito inline-block" />
-              <span className="relative inline-block">
-                <TypingAnimation text={lastWord} startDelay={lastStart} className="nunito inline-block font-semibold" />
-                <motion.svg
-                  className="absolute left-0 right-0 -bottom-4 h-6 w-full"
-                  viewBox="0 0 160 24"
-                  preserveAspectRatio="none"
-                >
-                  <motion.path
-                    d="M4 12 C28 2, 92 2, 156 12"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    initial={{ pathLength: 0 }}
-                    animate={{ pathLength: 1 }}
-                    transition={{ delay: underlineDelay, duration: 0.9, ease: 'easeInOut' }}
-                  />
-                </motion.svg>
-                </span>
-            </div>
+            <div className="flex flex-wrap items-baseline nunito">
+  <TypingAnimation text={preText} startDelay={baseDelay} className="nunito inline-block" />
+  <span className="relative inline-block whitespace-nowrap ml-[0.25ch] leading-none">
+    <TypingAnimation
+      text={lastWord}
+      startDelay={lastStart}
+      className="nunito inline-block font-semibold"
+    />
+    <motion.svg
+      className="absolute left-0 top-full translate-y-[0.2em] w-full h-[0.6em]"
+      viewBox="0 0 160 24"
+      preserveAspectRatio="none"
+    >
+      <motion.path
+        d="M4 12 C28 2, 92 2, 156 12"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        initial={{ pathLength: 0 }}
+        animate={{ pathLength: 1 }}
+        transition={{ delay: underlineDelay, duration: 0.9, ease: 'easeInOut' }}
+      />
+    </motion.svg>
+  </span>
+</div>
           </div>
         </div>
       </div>
